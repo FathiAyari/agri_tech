@@ -122,7 +122,7 @@ class _ProdcytsScreenState extends State<ProdctsScreen> {
                             },
                           );
                         } else {
-                          return CircularProgressIndicator();
+                          return Center(child: CircularProgressIndicator());
                         }
                       },
                     ),

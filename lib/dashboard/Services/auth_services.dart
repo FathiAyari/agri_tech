@@ -6,9 +6,11 @@ class Authservices {
     try {
       await auth.signInWithEmailAndPassword(
           email: emailController, password: passwordController);
+      print("done");
 
       return true;
     } catch (e) {
+      print(e.toString());
       return false;
     }
   }

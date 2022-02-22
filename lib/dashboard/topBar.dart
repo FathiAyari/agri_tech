@@ -1,10 +1,38 @@
-import 'package:agritech/sidenavbar.dart';
+import 'package:agritech/dashboard/sidenavbar.dart';
+import 'package:agritech/landing_page/screens/home_page.dart';
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-class TopBar extends StatelessWidget {
+import 'Services/check_login.dart';
+
+class TopBar extends StatefulWidget {
   const TopBar({Key? key}) : super(key: key);
+
+  @override
+  _TopBarState createState() => _TopBarState();
+}
+
+class _TopBarState extends State<TopBar> {
+  final PrefService _prefService = PrefService();
+  String looged = "";
+  void getToken() async {
+    await _prefService.readCache("name").then((value) {
+      if (value != null) {
+        setState(() {
+          looged = value;
+        });
+      } else {}
+    });
+  }
+
+  @override
+  void initState() {
+    getToken();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +53,11 @@ class TopBar extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 05.0, top: 0.5),
-                    child: Text("Mon Site web"),
+                    child: InkWell(
+                        onTap: () {
+                          Get.to(() => HomePage());
+                        },
+                        child: Text("Mon Site web")),
                   ),
                 ],
               ),
@@ -44,7 +76,12 @@ class TopBar extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: 05.0, top: 0.0),
-                    child: Text("Logout"),
+                    child: InkWell(
+                        onTap: () {
+                          _prefService.removeCache("name");
+                          Get.to(() => HomePage());
+                        },
+                        child: Text("Logout")),
                   ),
                 ],
               ),
@@ -142,6 +179,7 @@ class TopBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Text("${looged}"),
               Container(
                 padding: EdgeInsets.only(right: 10.0),
                 child: DecoratedBox(

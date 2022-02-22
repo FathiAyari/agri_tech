@@ -62,7 +62,7 @@ class SideNavBar extends StatelessWidget {
                 padding: EdgeInsets.all(18.0),
               ),
               onPressed: () {
-                Get.toNamed("/");
+                Get.toNamed("/dash");
               },
               child: Row(
                 children: [
@@ -186,40 +186,6 @@ class SideNavBar extends StatelessWidget {
                         left: 10.0, top: 01.0, right: 10.0, bottom: 0.0),
                     child: Text(
                       'A propos',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            child: TextButton(
-              style: ElevatedButton.styleFrom(
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(0.0),
-                ),
-                padding: EdgeInsets.all(18.0),
-              ),
-              onPressed: () {},
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 15.0, top: 0.0, right: 0.0, bottom: 0.0),
-                    child: Icon(
-                      AntIcons.logout_outline,
-                      size: 23.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 10.0, top: 0.0, right: 10.0, bottom: 0.0),
-                    child: Text(
-                      'Deconnexion',
                       style: TextStyle(
                         color: Colors.white,
                       ),
